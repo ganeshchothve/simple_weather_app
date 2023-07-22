@@ -1,6 +1,53 @@
-<%= form_tag fetch_weather_form_city_name_home_index_path, method: :get, remote: true do %>
-  <%= select_tag :city_name, options_for_select(['pune', 'chicago']) %>
-  <%= submit_tag 'apply', class: "f-save-btn btn btn-primary fn-500 float-end" %>
-<% end %>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <%= form_tag fetch_weather_form_city_name_home_index_path, method: :get, remote: true do %>
+            <div class="form-group">
+              <%= text_field_tag :city_name, nil, class: "form-control searchable", placeholder: "Enter city name" %>
+            </div>
+            <%= submit_tag 'Apply', class: "btn btn-primary float-right" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<div id="city-details"></div>
+  <div class="row justify-content-center mt-4">
+    <div class="col-md-12">
+      <div id="city-details" class="card border-0">
+        <div class="card-body">
+          <!-- City details fetched via Ajax will be rendered here -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= javascript_tag do %>
+  $(document).ready(function() {
+    // Attach a submit event handler to the form
+    $("form").on("submit", function(event) {
+      event.preventDefault(); // Prevent the form from submitting normally
+
+      // Get the selected city name from the select element
+      var selectedCity = $("#city_name").val();
+
+      // Make the Ajax request
+      $.ajax({
+        url: "<%= fetch_weather_form_city_name_home_index_path %>",
+        type: "get",
+        data: { city_name: selectedCity }, // Send the selected city as a parameter
+        success: function(response) {
+          // Update the city-details div with the response from the server
+          $("#city-details .card-body").html(response);
+        },
+        error: function(xhr, status, error) {
+          // Handle errors
+          $("#city-details .card-body").html("An error occurred while fetching weather details.");
+        }
+      });
+    });
+  });
+<% end %>

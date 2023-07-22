@@ -1,1 +1,69 @@
-<%= @response.as_json %>
+<!-- _response.html.erb -->
+
+<% if @response.is_a?(Hash) %>
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title">Weather Details for <%= @response.dig("name") %></h5>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col">
+                <h6>Coordinates:</h6>
+                <p>Longitude: <%= @response.dig("coord", "lon") %></p>
+                <p>Latitude: <%= @response.dig("coord", "lat") %></p>
+              </div>
+              <div class="col">
+                <h6>Weather:</h6>
+                <% if (weather = @response.dig("weather", 0)) %>
+                  <p>Main: <%= weather["main"] %></p>
+                  <p>Description: <%= weather["description"] %></p>
+                <% end %>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col">
+                <h6>Main Weather:</h6>
+                <p>Temperature: <%= @response.dig("main", "temp") %>°C</p>
+                <p>Feels Like: <%= @response.dig("main", "feels_like") %>°C</p>
+                <p>Pressure: <%= @response.dig("main", "pressure") %> hPa</p>
+                <p>Humidity: <%= @response.dig("main", "humidity") %>%</p>
+              </div>
+              <div class="col">
+                <h6>Wind:</h6>
+                <p>Speed: <%= @response.dig("wind", "speed") %> m/s</p>
+                <p>Direction: <%= @response.dig("wind", "deg") %>°</p>
+                <p>Gust: <%= @response.dig("wind", "gust") %> m/s</p>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col">
+                <h6>Clouds:</h6>
+                <p>All: <%= @response.dig("clouds", "all") %>%</p>
+              </div>
+              <div class="col">
+                <h6>Visibility:</h6>
+                <p><%= @response.dig("visibility") %> meters</p>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col">
+                <h6>Sun:</h6>
+                <p>Sunrise: <%= Time.at(@response.dig("sys", "sunrise")).strftime("%H:%M:%S") %></p>
+                <p>Sunset: <%= Time.at(@response.dig("sys", "sunset")).strftime("%H:%M:%S") %></p>
+              </div>
+              <div class="col">
+                <h6>Timezone:</h6>
+                <p><%= @response.dig("timezone") %></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <% @response %>
+<% end %>

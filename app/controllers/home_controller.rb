@@ -8,9 +8,15 @@ class HomeController < ApplicationController
     if params[:city_name].present?
       url = "https://api.openweathermap.org/data/2.5/weather?q=#{params[:city_name]}&appid=#{openweathermap_api_key}"
       begin
-        @response = RestClient.get(url)
+        @response = JSON.parse(RestClient.get(url))
       rescue RestClient::ExceptionWithResponse => e
-        response = e.response
+        @response = e.message
+        case @response
+        when "404 Not Found"
+          @response = "city not exist"
+        else
+          @response = "Something went wrong."
+        end
       end
     end
   end
