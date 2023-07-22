@@ -1,0 +1,6 @@
+<%= form_tag fetch_weather_form_city_name_home_index_path, method: :get, remote: true do %>
+  <%= select_tag :city_name, options_for_select(['pune', 'chicago']) %>
+  <%= submit_tag 'apply', class: "f-save-btn btn btn-primary fn-500 float-end" %>
+<% end %>
+
+<div id="city-details"></div>
