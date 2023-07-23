@@ -1,28 +1,26 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
 * Ruby version - 2.7.7
 
 * Rails version - 7.0.6
 
 * postgres version - 1.1
 
-* System dependencies
+* bundle
 
-* Configuration
+* open psql shell and create database with
+ - psql
+ - create database simple_weather_app_development;
+ - create database simple_weather_app_test;
 
-* Database creation
+* rails s
 
-* Database initialization
+* signup the application
 
-* How to run the test suite
+* login
 
-* Services (job queues, cache servers, search engines, etc.)
+* enter name of city
 
-* Deployment instructions
+* click on apply to fetch details from api openwearthermap
 
-* ...
+* logout
