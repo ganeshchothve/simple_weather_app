@@ -52,6 +52,7 @@ gem 'rest-client'
 gem 'pry'
 gem 'jquery-rails'
 gem 'rails-ujs'
+gem 'bcrypt', '~> 3.1.16'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

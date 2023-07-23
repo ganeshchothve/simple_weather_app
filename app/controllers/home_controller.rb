@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  # before_action :authenticate_user
+  before_action :authenticate_user
 
   def show_weather_report
   end
@@ -24,6 +24,12 @@ class HomeController < ApplicationController
   private
 
   def openweathermap_api_key
-    'secret-key'
+    '06bc7a59ae38709a91981d45f3e777df'
+  end
+
+  def authenticate_user
+    unless current_user
+      redirect_to login_path, alert: "please login to continue" and return
+    end
   end
 end
