@@ -24,7 +24,7 @@ class HomeController < ApplicationController
   private
 
   def openweathermap_api_key
-    '06bc7a59ae38709a91981d45f3e777df'
+    OPEN_WEATHER_MAP_API_KEY
   end
 
   def authenticate_user

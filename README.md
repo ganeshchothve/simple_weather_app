@@ -17,6 +17,12 @@
  - create database simple_weather_app_development;
  - create database simple_weather_app_test;
 
+* login to openweathermap website
+ - get an api key
+ - put it in config/application.rb file in OPEN_WEATHER_MAP_API_KEY
+ - so It can be loaded at rails app start up
+ - and it will work
+
 * rails s
 
 * signup the application

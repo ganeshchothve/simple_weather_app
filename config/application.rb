@@ -2,6 +2,8 @@ require_relative "boot"
 
 require "rails/all"
 
+OPEN_WEATHER_MAP_API_KEY = 'YOUR_API_KEY_HERE'
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
